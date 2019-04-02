@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <title>
+            Exercise 3
+        </title>
+        <link rel="stylesheet" href="style.css">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script
+                  src="https://code.jquery.com/jquery-3.3.1.js"
+                  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+                  crossorigin="anonymous">
+        </script>
+    </head>
+<body>
+
+    <div class="filter">
+        <form class="navbar-form navbar-left" role="search"> 
+                <div class="form-group">              
+                    <h4>Cari Planet</h4>
+                    <input type="search" name="filter" id="myInput" placeholder="search" >
+                     <button type="button" class="btn btn-default" id="cari">Submit</button>
+                </div>
+        </form>
+    </div>
+
+    <div class="container">
+        <table class="table table-bordered table-striped table-hover" id="pengisian">
+            <thead class="thead-dark"></thead>
+            <tr>
+                <th> Nama</th>
+                <th> Rotation</th>
+                <th> Orbital</th>
+                <th> Diameter</th>
+                <th> Climate</th>
+                <th> Gravity</th>
+            </tr>
+        </thead>
+      </table>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/d3js/5.7.0/d3.min.js"></script>
+<script >  
+    $(document).ready(function() {
+    $.get("https://swapi.co/api/planets", function(data){
+    var planetData = '';
+    console.log('ok');
+
+    $.each(data.results, function(key, value){
+    planetData += `<tr>`
+    planetData += '' 
+    planetData += '<td>'+value.name+'</td>';
+    planetData += '<td>'+value.rotation_period+'</td>';
+    planetData += '<td>'+value.orbital_period+'</td>';
+    planetData += '<td>'+value.diameter+'</td>';
+    planetData += '<td>'+value.climate+'</td>';
+    planetData += '<td>'+value.gravity+'</td>';
+    });
+
+    $('#pengisian').append(planetData);
+    });
+
+    });
+    
+    </script>
+
+
+    <!-- Optional JavaScript -->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
